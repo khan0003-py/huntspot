@@ -12,9 +12,10 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
     $count = $result->num_rows;
     if ($count > 0) {
         header("location: findjob.php");
+        $_SESSION['$err1'] = "set";
         die();
     }
-
+    $_SESSION['$err2'] = "set";
     $sql = "INSERT INTO `jobsapplied` "
         . "(`id`, `date`, `pid`, `sid`, `status`) "
         . "VALUES (NULL, CURRENT_DATE(), '$pid', '$sid', 'Applied');";

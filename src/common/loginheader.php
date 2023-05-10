@@ -42,6 +42,10 @@
                         <i class="fas fa-envelope mr-2"></i>
                         <?php echo $_SESSION["email"] ?>
                     </span>
+                    <span class="mt-2 block text-sm text-gray-900 dark:text-white">
+                        <i class="fas fa-th-large mr-2"></i>
+                        <a href="applicationStatus.php">View Applications</a>
+                    </span>
                 </div>
                 <ul class="py-2" aria-labelledby="user-menu-button">
                     <li>
@@ -67,7 +71,7 @@
             <ul
                 class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                 <li>
-                    <a href="index.html"
+                    <a href="index.php"
                         class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
                         aria-current="page">Home</a>
                 </li>

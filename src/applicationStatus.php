@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>Employer Account</title>
+  <title>Application Status</title>
   <link rel="icon" href="../img/icon.png" type="image/x-icon">
   <link rel="icon" href="../img/icon.png" type="image/x-icon">
   <meta charset="UTF-8">
@@ -47,15 +47,15 @@
 
 
   if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-    $_SESSION['redirect'] = "employerAccount";
+    $_SESSION['redirect'] = "applicationStatus";
     header("location: emprlogin.php");
   } else {
-    include "common/headeremployer.php";
+    include "common/loginheader.php";
   }
 
   ?>
 
-  <h1 class="text-3xl font-bold text-center text-gray-500 mt-48">Posted Jobs</h1>
+  <h1 class="text-3xl font-bold text-center text-gray-500 mt-48">Job Applications</h1>
 
   <div class="flex justify-center mt-20">
     <div class="w-full lg:w-3/4 xl:w-2/3">
@@ -67,22 +67,13 @@
                 Post Id
               </th>
               <th scope="col" class="px-6 py-3">
-                Title
+                Date Applied
               </th>
               <th scope="col" class="px-6 py-3">
-                Job Requirement
+                Job Title
               </th>
               <th scope="col" class="px-6 py-3">
-                Min Experience
-              </th>
-              <th scope="col" class="px-6 py-3">
-                Salary
-              </th>
-              <th scope="col" class="px-6 py-3">
-                Status
-              </th>
-              <th scope="col" class="px-6 py-3">
-                Update
+                Application Status
               </th>
               <th scope="col" class="px-6 py-3">
                 Delete
@@ -92,47 +83,43 @@
           <tbody>
 
             <?php
-            $sql = "select * from post where eid = $eid ";
-            $result = $conn->query($sql);
-            if ($result->num_rows > 0) {
+            $sql = "SELECT date, pid, status FROM jobsapplied WHERE sid = '$eid'";
+
+            $appresult = $conn->query($sql);
+            if ($appresult->num_rows > 0) {
               // output data of each row
-              while ($row = $result->fetch_assoc()) {
-                $id = $row['id'];
-                $title = $row['name'];
-                $category = $row['category'];
-                $minexp = $row['minexp'];
-                $salary = $row['salary'];
-                $industry = $row['industry'];
-                $desc = $row['desc'];
-                $role = $row['role'];
+              while ($row = $appresult->fetch_assoc()) {
+                $date = $row['date'];
+                $pid = $row['pid'];
                 $status = $row['status'];
+
+                $sql2 = "SELECT name FROM post WHERE id = '$pid'";
+                $result2 = mysqli_query($conn, $sql2);
+
+                if (mysqli_num_rows($result2) > 0) {
+                  $row2 = mysqli_fetch_assoc($result2);
+                  $title = $row2["name"];
+                } else {
+                  $title = "N/A";
+                }
 
             ?>
 
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-center">
                   <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    <?php echo $id; ?>
+                    <?php echo $pid; ?>
+                  </td>
+                  <td class="px-6 py-4">
+                    <?php echo $date; ?>
                   </td>
                   <td class="px-6 py-4">
                     <?php echo $title; ?>
                   </td>
                   <td class="px-6 py-4">
-                    <?php echo $desc; ?>
-                  </td>
-                  <td class="px-6 py-4">
-                    <?php echo $minexp; ?>
-                  </td>
-                  <td class="px-6 py-4">
-                    <?php echo $salary; ?>
-                  </td>
-                  <td class="px-6 py-4">
                     <?php echo $status; ?>
                   </td>
                   <td class="px-6 py-4">
-                    <a href="postjob.php?update=true&id=<?php echo $id; ?>" class="font-medium text-gray-400 hover:underline"><i class="fas fa-pencil-alt"></i></a>
-                  </td>
-                  <td class="px-6 py-4">
-                    <a href="deletePost.php?id=<?php echo $id; ?>" class="font-medium text-gray-400 hover:underline"><i class="fas fa-trash-alt"></i></a>
+                    <a href="deleteApplication.php?id=<?php echo $id; ?>" class="font-medium text-gray-400 hover:underline"><i class="fas fa-trash-alt"></i></a>
                   </td>
                 </tr>
             <?php

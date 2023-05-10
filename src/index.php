@@ -234,6 +234,8 @@
                   </li> 
               </ul>
           </div>
+</div>
+</div>
 </section>
 
   <?php

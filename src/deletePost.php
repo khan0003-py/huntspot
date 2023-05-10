@@ -12,7 +12,6 @@ if(isset($_GET['id'])){
     $id = $_GET['id'];
     $sql = "delete from post where id=$id";
     
-    
     if ($conn->query($sql) === TRUE) {
        
            header('location: employerAccount.php');

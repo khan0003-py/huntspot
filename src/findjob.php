@@ -157,7 +157,7 @@
     </div>
   </section>
 
-  <div class="flex flex-wrap justify-start mt-10">
+  <div class="flex flex-wrap justify-center mt-10">
     <?php
 
     $name = $category = $minexp = $salary = $industry = $desc = $role = $eType = $status = "";

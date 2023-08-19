@@ -59,14 +59,22 @@
         <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">Take your
           career to new heights with Huntspot - The trusted job finder that unlocks endless opportunities. Explore,
           apply, and succeed with ease. Join the hunt and discover your dream job today!</p>
-        <a href="findjob.php"
+        <?php if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+          echo '<a href="findjob.php"
           class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
           Find Jobs
         </a>
         <a href="employerAccount.php"
           class="inline-flex items-center justify-center px-5 py-3 ml-2 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
           Hire Talent
-        </a>
+        </a>';
+        }
+        else {echo '<a href="findjob.php"
+          class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-center text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:ring-gray-800">
+          Find Jobs
+        </a>';}; 
+        ?>
+        
       </div>
       <div class="hidden lg:mt-0 lg:col-span-5 lg:flex">
         <video width="600" height="600" autoplay muted>

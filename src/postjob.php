@@ -42,17 +42,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || $_SERVER['REQUEST_METHOD'] == 'GET')
       $status = $_POST['status'];
 
       if ($id > 0) {
-          $sql = "Update `post` set `date`=CURRENT_DATE(),"
-              . "`name`='$name', "
-              . "`category`='$category', "
-              . "`minexp`='$minexp', "
-              . "`desc`='$desc', "
-              . "`salary`='$salary', "
-              . "`industry`='$industry', "
-              . "`role`='$role', "
-              . "`employmentType`='$employmentType', "
-              . "`status`= '$status' "
-              . "where id=$id and eid=$eid;";
+        $sql = "UPDATE `post` SET `date`=CURRENT_DATE(),"
+        . "`name`='$name', "
+        . "`category`='$category', "
+        . "`minexp`='$minexp', "
+        . "`desc`='$desc', "
+        . "`salary`='$salary', "
+        . "`industry`='$industry', "
+        . "`role`='$role', "
+        . "`employmentType`='$employmentType', "
+        . "`status`= '$status' "
+        . "WHERE `id`='$id' AND `eid`='$eid';";
               $alert2 = "Updated";
       } else {
           $sql = "INSERT INTO `post` (`id`, `date`, `eid`, `name`, `category`, `minexp`, `desc`, `salary`, `industry`, `role`, `employmentType`, `status`) "

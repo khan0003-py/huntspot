@@ -1,0 +1,19 @@
+{
+  "name": "huntspot",
+  "version": "1.0.0",
+  "description": "PBL",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npx tailwindcss -i ./src/input.css -o ./dist/style.css --watch"
+  },
+  "author": "Arshad Khan",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.3.2"
+  },
+  "dependencies": {
+    "flowbite": "^1.6.5",
+    "swiper": "^9.2.4"
+  }
+}
